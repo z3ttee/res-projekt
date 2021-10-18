@@ -3,24 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ReactiveFormsModule} from '@angular/forms'
 
-import {MatInputModule} from '@angular/material/input';
-
-import { DummyDataModule } from "./modules/dummy-data/data.module"
-
-
+//custom modules
+import {DummyDataModule} from './modules/dummy-data/dummy-data.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     DummyDataModule,
-
-    MatInputModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

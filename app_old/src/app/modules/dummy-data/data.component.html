@@ -1,30 +1,12 @@
 <hr />
-<div class="container">
+<div>
 
-	<div class="section">
-	  <form class="form" [formGroup]="form">
-	    <h1>Nutzer hinzufügen</h1>
-	    <mat-form-field class="form-group" appearance="fill">
-	      <mat-label>Vorname</mat-label>
-	      <input matInput formControlName="firstName" type="text">
-	    </mat-form-field>
-
-	    <mat-form-field class="form-group" appearance="fill">
-	      <mat-label>Nachname</mat-label>
-	      <input matInput formControlName="lastName" type="text">
-	    </mat-form-field>
-
-		<mat-form-field class="form-group" appearance="fill">
-			<mat-label>Wie alt bist du?</mat-label>
-			<input matInput #age formControlName="age" maxlength="3">
-		  </mat-form-field>
-	  </form>
-
-	  <button class="btn" type="submit" mat-stroked-button [disabled]="form.invalid" color="accent" (click)="newUser()">Anlegen</button>
-	</div>
-
-	<!--<form [formGroup]="form" >
+	<form [formGroup]="form" >
 		<div class="form-group">
+			<mat-form-field class="example-full-width" appearance="fill">
+				<mat-label>Favorite food</mat-label>
+				<input matInput placeholder="Ex. Pizza" value="Sushi">
+			  </mat-form-field>
 			Vorname:
 			<input formControlName="firstName" type="text" class="form-control">
 			<div *ngIf="checkValid('firstName')?.errors?.required" class="error">
@@ -75,32 +57,15 @@
 					<button mat-stroked-button type="button" [disabled]="form.invalid" (click)="newUser()">Anlegen</button>
 				</div>
 		</div>
-	</form>-->
+	</form>
 
-	<div class="section">
-
-		<!--<table mat-table [dataSource]="users">
-			
-		</table>-->
-		<table>
-			<tr>
-			  <th>UUID</th>
-			  <th>Vorname</th>
-			  <th>Nachname</th>
-			  <th>Alter</th>
-			</tr>
-		  
-			<tr *ngFor="let user of users">
-			  <td>{{user.id}}</td>
-			  <td>{{user.firstName}}</td>
-			  <td>{{user.lastName}}</td>
-			  <td>{{user.age}}</td>
-			</tr>
-
-			<tr *ngIf="users.length < 1">
-				<p>No users found.</p>
-			</tr>
-		  </table>
+	<div *ngIf="users.length" >
+		<div *ngFor="let user of users" >
+			{{user.id}}	{{user.firstName}}	{{user.lastName}}	{{user.age}} 
+		</div>
+	</div>
+	<div *ngIf="users.length < 1" >
+		<p>No users found.</p>
 	</div>
 
 </div>

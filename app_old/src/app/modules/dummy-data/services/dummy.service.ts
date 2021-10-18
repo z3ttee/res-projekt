@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
-import {USER} from '../model/user'
+import {USER} from '../user'
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class DummyService {
 
-  url: string = 'http://localhost:3000/api';
+  url:string = 'http://localhost:3000/api';
 
   constructor(private httpclient: HttpClient) { }
 

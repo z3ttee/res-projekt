@@ -5,16 +5,15 @@ import { UserDto} from '../dtos/users/users.dto'
 
 @Injectable()
 export class DummyservService {
-	constructor(@InjectRepository(UserRepository) private userRepositary : UserRepository){
-
-	}
+	constructor(@InjectRepository(UserRepository) private userRepositary : UserRepository){}
 
 	async getAllUser() :Promise<UserDto[]>{
-		return await this.userRepositary.find();//select * from users
+		return await this.userRepositary.find({ order: { createdAt: "DESC" } });	//select * from users
 	}
 
 	async createNewUserDB(user : UserDto) : Promise<UserDto>{
-		console.log(user);
-		return await this.userRepositary.save(user);
+		const result = await this.userRepositary.save(user);
+		console.log(result);
+		return result;
 	}
 }

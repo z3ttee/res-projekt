@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms'
 import {DummyService} from './services/dummy.service'
-import {USER} from './model/user'
+import {USER} from './user'
 
 @Component({
   selector: 'app-data',
   templateUrl: './data.component.html',
-  styleUrls: ['./data.component.scss']
+  styleUrls: ['./data.component.css']
 })
 export class DataComponent implements OnInit {
 
@@ -34,15 +34,11 @@ export class DataComponent implements OnInit {
     return this.form.get(input);
   }
 
-  public newUser(){  
-    this.dummyservice.postUser(this.form.value).subscribe(res => {
-
-        for(let index = this.users.length; index >= 0; index--) {
-          this.users[index + 1] = this.users[index];
-        }
-
-        this.users[0] = res;
-      }
+  public newUser(){
+    //console.log(this.form.value);
+    
+    this.dummyservice.postUser(this.form.value).subscribe(
+      res => this.users.push(res)
     )
 
     this.dummyservice.getAllUser().subscribe(
@@ -50,4 +46,11 @@ export class DataComponent implements OnInit {
    )
     
   }
+/*
+  public schowUser(){
+    this.dummyservice.getAllUser().subscribe(
+      data => this.users = data
+   )
+  }
+*/
 }

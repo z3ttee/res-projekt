@@ -6,6 +6,12 @@ import { DataComponent } from './data.component';
 import {ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule} from '@angular/common/http'
 import {DummyService} from './services/dummy.service'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
+import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +22,12 @@ import {DummyService} from './services/dummy.service'
     CommonModule,
     ReactiveFormsModule,
     BrowserModule,
-    HttpClientModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+
+    MatButtonModule,
+    MatTableModule,
+    MatInputModule
   ],
   exports: [
     DataComponent
