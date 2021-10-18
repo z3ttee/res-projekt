@@ -17,8 +17,7 @@ export class DummyconController {
 	@Post()
 	@UsePipes(ValidationPipe)
 	async postUser(@Body() userInfo: UserDto): Promise<UserDto>{
-		console.log(userInfo);
-		return await this.userService.createNewUserDB(userInfo) ;
+		return this.userService.createNewUserDB(userInfo) ;
 	}
 	
 }
