@@ -3,7 +3,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export const config:TypeOrmModuleOptions =  {
 	type: "mariadb",
-	database: "vortrag",
+	database: "guenther",
 	entities: [
 		"dist/**/*.entity{.ts,.js}"
 	 ],
@@ -11,7 +11,6 @@ export const config:TypeOrmModuleOptions =  {
 	host:"localhost",
 	port: 3306,
 	username: "root",
-	password: "Eiersalat",
-
+	password: ""
 }
 

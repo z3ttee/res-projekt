@@ -10,7 +10,7 @@ async function bootstrap() {
   .setTitle('Eiersalat')
   .setDescription('CODE:EGG')
   .setVersion('0.0000001')
-  .addTag('Robert verkauft die besten Eier')
+  .addTag('Robert verkauft die besten Nuts')
   .build();
 
   const document = SwaggerModule.createDocument(app, config);
