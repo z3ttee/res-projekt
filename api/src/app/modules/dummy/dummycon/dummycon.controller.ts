@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Post, UsePipes, ValidationPipe, Delete, Param } from '@nestjs/common';
 import {UserDto} from '../dtos/users/users.dto';
 import {DummyservService} from '../dummyserv/dummyserv.service'
 
@@ -18,6 +18,11 @@ export class DummyconController {
 	@UsePipes(ValidationPipe)
 	async postUser(@Body() userInfo: UserDto): Promise<UserDto>{
 		return this.userService.createNewUserDB(userInfo) ;
+	}
+
+	@Delete(":id")
+	async deleteUser(@Param("id") id: string) {
+		return this.userService.deleteUser(id);
 	}
 	
 }

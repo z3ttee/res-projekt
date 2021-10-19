@@ -12,9 +12,13 @@ export class DummyService {
 
   constructor(private httpclient: HttpClient) { }
 
-  postUser(user: USER): Observable<USER>{
+  postUser(user: USER): Observable<USER> {
     console.log("send post request");
     return  this.httpclient.post<USER>(this.url,user);
+  }
+
+  deleteUser(id: string | undefined) {
+    return this.httpclient.delete(this.url + "/" + id);
   }
 
   getAllUser(): Observable<USER[]>{

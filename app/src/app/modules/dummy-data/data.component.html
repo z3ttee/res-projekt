@@ -1,4 +1,3 @@
-<hr />
 <div class="container">
 
 	<div class="section">
@@ -15,12 +14,12 @@
 	    </mat-form-field>
 
 		<mat-form-field class="form-group" appearance="fill">
-			<mat-label>Wie alt bist du?</mat-label>
+			<mat-label>Alter</mat-label>
 			<input matInput #age formControlName="age" maxlength="3">
 		  </mat-form-field>
 	  </form>
 
-	  <button class="btn" type="submit" mat-stroked-button [disabled]="form.invalid" color="accent" (click)="newUser()">Anlegen</button>
+	  <button class="btn" type="submit" mat-stroked-button [disabled]="form.invalid" color="accent" (click)="newUser()"><mat-icon>save</mat-icon><span>Anlegen</span></button>
 	</div>
 
 	<!--<form [formGroup]="form" >
@@ -78,29 +77,37 @@
 	</form>-->
 
 	<div class="section">
+		<h1>Alle Einträge</h1>
 
 		<!--<table mat-table [dataSource]="users">
 			
 		</table>-->
-		<table>
+		<table *ngIf="users.length > 0" cellspacing="0">
 			<tr>
 			  <th>UUID</th>
 			  <th>Vorname</th>
 			  <th>Nachname</th>
 			  <th>Alter</th>
+			  <th></th>
 			</tr>
 		  
 			<tr *ngFor="let user of users">
-			  <td>{{user.id}}</td>
-			  <td>{{user.firstName}}</td>
-			  <td>{{user.lastName}}</td>
-			  <td>{{user.age}}</td>
+			  <td>{{user?.id}}</td>
+			  <td>{{user?.firstName}}</td>
+			  <td>{{user?.lastName}}</td>
+			  <td>{{user?.age}}</td>
+			  <td>
+				<button mat-icon-button color="warn" (click)="delUser(user.id)">
+					<mat-icon>delete</mat-icon>
+				</button>
+				</td>
 			</tr>
-
-			<tr *ngIf="users.length < 1">
-				<p>No users found.</p>
-			</tr>
+			
 		  </table>
+
+		  <div class="error404" *ngIf="users.length < 1">
+			<span>Keine Einträge gefunden</span>
+		</div>
 	</div>
 
 </div>

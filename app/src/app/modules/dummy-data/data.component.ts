@@ -42,6 +42,7 @@ export class DataComponent implements OnInit {
         }
 
         this.users[0] = res;
+        this.users = this.users.filter((user) => user);
       }
     )
 
@@ -49,5 +50,14 @@ export class DataComponent implements OnInit {
       data => this.users = data
    )
     
+  }
+
+  public async delUser(id: string | undefined) {
+    console.log("deleting id: " + id);
+    this.dummyservice.deleteUser(id).subscribe(() => {
+      const index = this.users.findIndex((user) => user.id == id);
+      this.users.splice(index, 1);
+    })
+
   }
 }

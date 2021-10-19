@@ -16,4 +16,8 @@ export class DummyservService {
 		console.log(result);
 		return result;
 	}
+
+	async deleteUser(id: string) {
+		return this.userRepositary.delete({ id })
+	}
 }
