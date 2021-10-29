@@ -1,0 +1,7 @@
+Download:
+https://mirror.kumi.systems/mariadb/mariadb-10.6.4/winx64-packages/mariadb-10.6.4-winx64.zip
+
+\bin Verzeichnis zu Umgebungsvariable hinzufügen
+MARIADB_HOME environment setzen
+
+Root Password ändern über MariaDB-Query
