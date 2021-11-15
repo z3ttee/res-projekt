@@ -25,17 +25,20 @@ export class DataComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.dummyservice.getAllUser().subscribe(
-      data => this.users = data
-   )
+    this.getAll();
   }
 
   public checkValid(input:string){
     return this.form.get(input);
   }
 
+  public getAll() {
+    this.dummyservice.getAllUser().toPromise().then(data => this.users = data)
+  }
+
   public newUser(){  
     this.dummyservice.postUser(this.form.value).subscribe(res => {
+      this.form.reset();
 
         for(let index = this.users.length; index >= 0; index--) {
           this.users[index + 1] = this.users[index];
@@ -43,20 +46,17 @@ export class DataComponent implements OnInit {
 
         this.users[0] = res;
         this.users = this.users.filter((user) => user);
+        this.getAll();
       }
-    )
-
-    this.dummyservice.getAllUser().subscribe(
-      data => this.users = data
-   )
-    
+    )    
   }
 
   public async delUser(id: string | undefined) {
     console.log("deleting id: " + id);
-    this.dummyservice.deleteUser(id).subscribe(() => {
+    this.dummyservice.deleteUser(id).toPromise().then(() => {
       const index = this.users.findIndex((user) => user.id == id);
       this.users.splice(index, 1);
+      this.getAll()
     })
 
   }

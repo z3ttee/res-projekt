@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {USER} from '../model/user'
 import { Observable } from 'rxjs';
@@ -10,7 +10,9 @@ export class DummyService {
 
   url: string = 'http://localhost:3000/api';
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private httpclient: HttpClient) {
+    this.url = "http://" + window.location.hostname + ":3000/api";
+  }
 
   postUser(user: USER): Observable<USER> {
     console.log("send post request");

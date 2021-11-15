@@ -11,6 +11,7 @@ export const config:TypeOrmModuleOptions =  {
 	host:"localhost",
 	port: 3306,
 	username: "test",
-	password: "test"
+	password: "test",
+	logging: true
 }
 

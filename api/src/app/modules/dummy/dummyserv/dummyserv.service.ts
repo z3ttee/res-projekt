@@ -13,11 +13,12 @@ export class DummyservService {
 
 	async createNewUserDB(user : UserDto) : Promise<UserDto>{
 		const result = await this.userRepositary.save(user);
-		console.log(result);
+		console.log("create user: ", result);
 		return result;
 	}
 
 	async deleteUser(id: string) {
+		console.log("delete user:", id);
 		return this.userRepositary.delete({ id })
 	}
 }

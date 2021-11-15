@@ -50,3 +50,11 @@ table {
     }
 
 }
+
+.btn {
+    margin-top: 0.8rem;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
+}
