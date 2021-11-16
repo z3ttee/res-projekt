@@ -60,4 +60,8 @@ export class DataComponent implements OnInit {
     })
 
   }
+
+  public reload() {
+    window.location.reload()
+  }
 }
