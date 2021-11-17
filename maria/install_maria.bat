@@ -142,13 +142,31 @@ set /p dbpass="Passwort: "
 REM Es wird eine Variable "dbname" gesetzt. /p = Erfasst die Eingabe des Nutzers und setzt diese als neuen Wert
 set /p dbname="Datenbank-Name: "
 
+REM Benutzer wird darüber informiert, dass die Datenbank erstellt wird
 echo Creating database %dbname%;
+
+REM Es wird der mysql Befehl ausgeführt, der wiederum das SQL-Statement zum Erstellen einer Datenbank ausführt (als Nutzer root und mit dem zuvor festgelegten Passwort)
+REM --user     = Legt den Benutzername zum anmelden fest
+REM --password = Legt das Passwort zum anmelden fest
+REM --execute  = Legt den auszuführenden SQL-Befehl aus
 %MARIADB_BIN%\mysql --user=root --password="%rootpass%" --execute="CREATE DATABASE %dbname%;"
 
+REM Benutzer wird darüber informiert, dass der neue Datenbanknutzer mit Passwort angelegt wird
 echo Creating user %dbuser% with password %dbpass%
+
+REM Es wird der mysql Befehl ausgeführt, der wiederum das SQL-Statement zum Erstellen eines Datenbanknutzers ausführt (als Nutzer root und mit dem zuvor festgelegten Passwort)
+REM --user     = Legt den Benutzername zum anmelden fest
+REM --password = Legt das Passwort zum anmelden fest
+REM --execute  = Legt den auszuführenden SQL-Befehl aus
 %MARIADB_BIN%\mysql --user=root --password="%rootpass%" --execute="CREATE USER '%dbuser%'@'localhost' IDENTIFIED BY '%dbpass%';"
 
+REM Benutzer wird darüber informiert, dass dem Datenbankbenutzer alle Rechte auf die neu erstellte Datenbank zugewiesen werden.
 echo Granting all permissions on database %dbname% to user %dbuser%
+
+REM Es wird der mysql Befehl ausgeführt, der wiederum das SQL-Statement zum erteilen aller Rechte auf eine Datenbank ausführt (als Nutzer root und mit dem zuvor festgelegten Passwort)
+REM --user     = Legt den Benutzername zum anmelden fest
+REM --password = Legt das Passwort zum anmelden fest
+REM --execute  = Legt den auszuführenden SQL-Befehl aus
 %MARIADB_BIN%\mysql --user=root --password="%rootpass%" --execute="GRANT ALL PRIVILEGES ON %dbname%.* TO '%dbuser%'@'localhost'; FLUSH PRIVILEGES;"
 
 REM Goto ist ein Befehl zum "springen". Dabei wird zur Sprungmarke "END" gesprungen.
@@ -157,12 +175,25 @@ goto END
 REM Diese Zeile legt eine Sprungmarke mit dem Name "END" fest
 :END
 
+REM Leere Zeile ausgeben
 echo.
+
+REM Leere Zeile ausgeben
 echo.
+
+REM Leere Zeile ausgeben
 echo.
+
+REM Der Benutzer wird über eine Ausgabe über die erfolgreiche Installation des Virusses informiert
 echo Virus wurde inschtalliert. Danke für ihr Vetrauen!
+
+REM Leere Zeile ausgeben
 echo.
+
+REM Leere Zeile ausgeben
 echo.
+
+REM Leere Zeile ausgeben
 echo.
 
 REM PAUSE bewirkt, dass das Programm unterbrochen wird und somit nicht mit Beendigung des Programms das CMD-Fenster
