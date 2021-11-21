@@ -31,13 +31,19 @@ read -p -s "> Passwort festlegen: " rootpw
 # Der Nutzer wird über den derzeitigen Schritt informiert.
 echo "[4] Passwort wird festgelegt..."
 
+# Hier wird eine Variable festlegt, die ein SQL-Statement als Wert beinhaltet.
+# Zum SQL-Statement:
+# ALTER USER = Bearbeitet einen Nutzer mit nachfolgendem Parameter als Nutzername bzw. Identifikation. (@ bestimmt den Hostnamenkontext, % bedeutet alle Hosts)
+# IDENTIFIED BY = Legt das Passwort fest. Durch "ALTER USER" wird das Passwort neu gesetzt.
+CHANGE_ROOT_PW_SQL="ALTER USER 'root'@'localhost' IDENTIFIED BY '$rootpw';"
+
 # Der Befehl "mysql" öffnet die Kommandozeile für mysql.
 # --user legt den Benutzer fest, mit dem die Kommandozeile bedient werden soll
 # --execute Gibt den Befehl an, der ausgeführt wird. Wird dieser Parameter
 # nicht mit angeben, öffnet sich die Kommandozeile, sodass verschiedene Befehle
 # nacheinander eingegeben werden können. --execute dient lediglich der automatisierung
 # und öffnet nicht die Kommandozeile
-mysql --user root --execute "ALTER USER 'root'@'localhost' IDENTIFIED BY '$rootpw';"
+mysql --user root --execute $CHANGE_ROOT_PW_SQL
 
 # Leere Zeile ausgeben
 echo 
