@@ -26,8 +26,9 @@ echo "[3] Passwort für Hauptbenutzer ändern..."
 # geschrieben wird.
 # Der Parameter -s sorgt dafür, dass die Eingabe "versteckt" wird. Das ist
 # bei Passwörtern sinnvoll.
-read -p -s "> Passwort festlegen: " rootpw
+read -s -p "> Passwort festlegen: " rootpw
 
+echo
 # Der Nutzer wird über den derzeitigen Schritt informiert.
 echo "[4] Passwort wird festgelegt..."
 
@@ -43,7 +44,7 @@ CHANGE_ROOT_PW_SQL="ALTER USER 'root'@'localhost' IDENTIFIED BY '$rootpw';"
 # nicht mit angeben, öffnet sich die Kommandozeile, sodass verschiedene Befehle
 # nacheinander eingegeben werden können. --execute dient lediglich der automatisierung
 # und öffnet nicht die Kommandozeile
-mysql --user root --execute $CHANGE_ROOT_PW_SQL
+sudo mysql --execute="$CHANGE_ROOT_PW_SQL"
 
 # Leere Zeile ausgeben
 echo 
