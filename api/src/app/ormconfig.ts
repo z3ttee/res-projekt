@@ -3,7 +3,7 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export const config:TypeOrmModuleOptions =  {
 	type: "mariadb",
-	database: "guentherdb",
+	database: "resdb",
 	entities: [
 		"dist/**/*.entity{.ts,.js}"
 	 ],
