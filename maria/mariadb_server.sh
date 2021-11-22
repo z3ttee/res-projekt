@@ -55,7 +55,7 @@ echo "[5] MariaDB-Server wird für Remote-Verbindungen eingerichtet..."
 # Das sed Script wird mit -i festgelegt und sucht nach einer Zeile, die "bind-address" enthält. Diese wird mit der Zeile
 # "bind-address=0.0.0.0" ersetzt, um Remote-Verbindungen für die Datenbank zuzulassen. Im Script wird ".*" angegeben, damit auch Leerzeichen und alle
 # folgenden zeichen einer Reihe beachtet werden. (In der Datei ist der Wert durch eine Leerzeichenfolge eingerückt)
-sudo sed -i 's/bind-address.*/bind-address=0.0.0.0' /etc/mysql/mariadb.conf.d/50-server.cnf
+sudo sed -i 's/bind-address.*/bind-address=0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Leere Zeile ausgeben
 echo
