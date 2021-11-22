@@ -46,6 +46,26 @@ CHANGE_ROOT_PW_SQL="ALTER USER 'root'@'localhost' IDENTIFIED BY '$rootpw';"
 # und öffnet nicht die Kommandozeile
 sudo mysql --execute="$CHANGE_ROOT_PW_SQL"
 
+echo
+# Der Nutzer wird über den derzeitigen Schritt informiert.
+echo "[5] MariaDB-Server wird für Remote-Verbindungen eingerichtet..."
+
+# Der Befehl "sed" wird dem Befehl "sudo" als Parameter übergeben, sodass wir sed mit Admin-Rechten ausführen können.
+# Das ist hier notwendig, weil eine Systemdatei bearbeitet wird.
+# Das sed Script wird mit -i festgelegt und sucht nach einer Zeile, die "bind-address" enthält. Diese wird mit der Zeile
+# "bind-address=0.0.0.0" ersetzt, um Remote-Verbindungen für die Datenbank zuzulassen. Im Script wird ".*" angegeben, damit auch Leerzeichen und alle
+# folgenden zeichen einer Reihe beachtet werden. (In der Datei ist der Wert durch eine Leerzeichenfolge eingerückt)
+sudo sed -i 's/bind-address.*/bind-address=0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
+
+# Leere Zeile ausgeben
+echo
+# Der Nutzer wird über den derzeitigen Schritt informiert.
+echo "[5] MariaDB-Server wird neugestartet..."
+
+# Der Befehl muss wieder mit Admin-Rechten ausgeführt werden, weshalb sudo zum Aufrufen des eigentlichen Befehls benötigt wird.
+# Der Befehl "service" gefolgt vom Name des Service und "restart" als weiteren Parameter sorgt dafür, dass der MariaDB Server neugestartet wird
+sudo service mariadb restart
+
 # Leere Zeile ausgeben
 echo 
 # Leere Zeile ausgeben

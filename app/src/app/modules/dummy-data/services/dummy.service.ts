@@ -8,10 +8,10 @@ import { Observable } from 'rxjs';
 })
 export class DummyService {
 
-  url: string = 'http://localhost:3000/api';
+  url: string = 'http://5.252.224.199:3000/';
 
   constructor(private httpclient: HttpClient) {
-    this.url = "http://" + window.location.hostname + ":3000/api";
+    this.url = "http://5.252.224.199:3000/api";
   }
 
   postUser(user: USER): Observable<USER> {
