@@ -64,7 +64,7 @@ echo "[5] MariaDB-Server wird neugestartet..."
 
 # Der Befehl muss wieder mit Admin-Rechten ausgeführt werden, weshalb sudo zum Aufrufen des eigentlichen Befehls benötigt wird.
 # Der Befehl "service" gefolgt vom Name des Service und "restart" als weiteren Parameter sorgt dafür, dass der MariaDB Server neugestartet wird
-sudo service mariadb-server restart
+sudo service mariadb restart
 
 # Leere Zeile ausgeben
 echo 
